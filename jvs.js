@@ -11,3 +11,8 @@ function compChoice(){
     return choice
 }
 console.log(compChoice())
+
+function getHumanChoice() {
+    humanchoice = window.prompt("choose rock paper scissors");
+
+}
