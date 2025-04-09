@@ -40,5 +40,14 @@ function playRound(humanChoice, compChoice) {
 
 let humanselection = getHumanChoice()
 let compselection = getCompChoice()
-
 playRound(humanselection, compselection)
+
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        let humanselection = getHumanChoice()
+        let compselection = getCompChoice()
+        playRound(humanselection, compselection)
+        console.log(humanScore + ':' + compScore)
+    }
+}
+playGame()
