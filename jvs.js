@@ -2,11 +2,11 @@ function getCompChoice(){
     let compChoice;
     let a = Math.floor(Math.random() * 3);
     if (a === 0) {
-        choice = "rock";
+        compChoice = "rock";
     }   else if (a === 1) {
-        choice = "paper";
+        compChoice = "paper";
     }   else if (a === 2) {
-        choice = "scissors";
+        compChoice = "scissors";
     }
     return compChoice
 }
@@ -20,12 +20,25 @@ let humanScore = 0;
 let compScore = 0;
 
 function playRound(humanChoice, compChoice) {
+    console.log("Human:", humanChoice);
+    console.log("Computer:", compChoice);
+
     if (compChoice === humanChoice) {
-        console.log('DRAW')
-    } else if ((humanChoice == 'paper' && compChoice == 'rock') || (humanChoice == 'scissors' && compChoice == 'rock') || (humanChoice == 'rock' && compChoice == 'scissors')) {
+        console.log('DRAW');
+    } else if (
+        (humanChoice === 'paper' && compChoice === 'rock') ||
+        (humanChoice === 'scissors' && compChoice === 'paper') ||
+        (humanChoice === 'rock' && compChoice === 'scissors')
+    ) {
+        console.log('YOU WON!!!');
         humanScore += 1;
     } else {
+        console.log('COMPUTER WON!!!');
         compScore += 1;
-    } 
-    
+    }
 }
+
+let humanselection = getHumanChoice()
+let compselection = getCompChoice()
+
+playRound(humanselection, compselection)
