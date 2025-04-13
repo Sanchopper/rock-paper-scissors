@@ -24,30 +24,33 @@ function playRound(humanChoice, compChoice) {
     console.log("Computer:", compChoice);
 
     if (compChoice === humanChoice) {
-        console.log('DRAW');
+        resultText = "DRAW";
     } else if (
         (humanChoice === 'paper' && compChoice === 'rock') ||
         (humanChoice === 'scissors' && compChoice === 'paper') ||
         (humanChoice === 'rock' && compChoice === 'scissors')
     ) {
-        console.log('YOU WON!!!');
+        resultText = "YOU WON"
         humanScore += 1;
     } else {
-        console.log('COMPUTER WON!!!');
+        resultText = "COMPUTER WON"
         compScore += 1;
     }
+
+    document.getElementById("result").textContent = resultText
+    document.getElementById("humanChoice").textContent = humanChoice
+    document.getElementById("compChoice").textContent = compChoice
+    document.getElementById("humanScore").textContent = humanScore
+    document.getElementById("compScore").textContent = compScore
 }
 
-let humanselection = getHumanChoice()
-let compselection = getCompChoice()
-playRound(humanselection, compselection)
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let humanselection = getHumanChoice()
-        let compselection = getCompChoice()
-        playRound(humanselection, compselection)
-        console.log(humanScore + ':' + compScore)
-    }
-}
-playGame()
+
+const buttons = document.querySelectorAll("button")
+buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let humanselection = button.id
+            let compselection = getCompChoice()
+            playRound(humanselection, compselection)
+        })
+})
