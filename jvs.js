@@ -2,51 +2,51 @@ function getCompChoice(){
     let compChoice;
     let a = Math.floor(Math.random() * 3);
     if (a === 0) {
-        compChoice = 'rock';
+        compChoice = "rock";
     }   else if (a === 1) {
-        compChoice = 'paper';
+        compChoice = "paper";
     }   else if (a === 2) {
-        compChoice = 'scissors';
+        compChoice = "scissors";
     }
     return compChoice
 }
 
-function getHumanChoice() {
-    humanChoice = window.prompt("choose rock paper scissors").toLowerCase()
-    return humanChoice
 
-}
 let humanScore = 0;
 let compScore = 0;
 
-function playRound(compChoice, humanChoice){
-    if (humanChoice == compChoice) {
-        console.log('DRAW')
-    } else if (humanChoice == 'rock' && compChoice == 'scissors') {
-        console.log('YOU WON')
-        humanScore = humanScore + 1
-    } else if (humanChoice == 'paper' && compChoice == 'rock'){
-        console.log('YOU WON')
-        humanScore = humanScore + 1 
-    } else if (humanChoice == 'scissors' && compChoice == 'paper') {
-        console.log('YOU WON')
-        humanScore = humanScore + 1
+function playRound(humanChoice, compChoice) {
+    console.log("Human:", humanChoice);
+    console.log("Computer:", compChoice);
+
+    if (compChoice === humanChoice) {
+        resultText = "DRAW";
+    } else if (
+        (humanChoice === 'paper' && compChoice === 'rock') ||
+        (humanChoice === 'scissors' && compChoice === 'paper') ||
+        (humanChoice === 'rock' && compChoice === 'scissors')
+    ) {
+        resultText = "YOU WON"
+        humanScore += 1;
     } else {
-        console.log('YOU LOOSE')
-        compScore = compScore + 1
+        resultText = "COMPUTER WON"
+        compScore += 1;
     }
+
+    document.getElementById("result").textContent = resultText
+    document.getElementById("humanChoice").textContent = humanChoice
+    document.getElementById("compChoice").textContent = compChoice
+    document.getElementById("humanScore").textContent = humanScore
+    document.getElementById("compScore").textContent = compScore
 }
 
 
-function playGame() {
 
-    for (let i = 0; i<5; i++) {
-        let humanselection = getHumanChoice()
-        let compselection = getCompChoice()
-        playRound(compselection, humanselection)    
-        console.log(humanScore, compScore)
-    }
-
-}
-
-playGame()
+const buttons = document.querySelectorAll("button")
+buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let humanselection = button.id
+            let compselection = getCompChoice()
+            playRound(humanselection, compselection)
+        })
+})
